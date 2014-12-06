@@ -11,7 +11,7 @@ The 5 input images are located under input/. These images are downloaded from ht
 The MATLAB script used to calcualte the quality metric can be found at script/computeFilterAccuract.m. Usage:
 
 ```
-[fneg, fpos, acc, metric] = computeFilterAccuracy('path/to/original/image', '/path/to/filtered/image')
+[fneg, fpos, metric] = computeFilterAccuracy('path/to/original/image', '/path/to/filtered/image')
 ```
 
-Where fneg is the false negative rate, fpos is the false positive rate, acc is the accuracy (ratio of correctly detected edge), and metric is the quality metric.
+Where fneg is the normalized false negative rate, fpos is the normalized false positive rate, and metric is the quality metric (sum of the two normalized error rates).
