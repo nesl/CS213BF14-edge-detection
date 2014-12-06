@@ -10,6 +10,8 @@ The 5 input images are located under input/. These images are downloaded from ht
 
 The MATLAB script used to calcualte the quality metric can be found at script/computeFilterAccuract.m. Usage:
 
-  <[neg, pos, zer]  = computeFilterAccuracy('path/to/original/image', '/path/to/filtered/image')>
+```
+[neg, pos, zer]  = computeFilterAccuracy('path/to/original/image', '/path/to/filtered/image')
+```
   
 where neg is the false negative rate, pos is the false positive rate, and zer is the rate of correctly detected edges.
