@@ -25,14 +25,9 @@ int main(int argc, char* argv[]) {
 	FILE	*bmpInput, *bmpOutput;
 	sImage originalImage;
 	sImage edgeImage;
-	unsigned int X, Y;
-	int I, J;
-	long sumX, sumY;
 	int nColors, SUM;
 	unsigned long vectorSize;
 	unsigned long fileSize, fileSize2;
-	int GX[3][3];
-	int GY[3][3];
 	unsigned char *pChar, someChar;
 	unsigned int row, col;
 
