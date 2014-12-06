@@ -61,7 +61,7 @@ fneg = length(ind_neg)/(512*512);
 fpos = length(ind_pos)/(512*512);
 acc = length(ind_zer)/(512*512);
 
-metric = fneg * fpos / acc;
+metric = (fneg + fpos + 1e-6) / acc;
 
 
 
