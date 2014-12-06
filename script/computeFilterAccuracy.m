@@ -5,9 +5,10 @@ function [fneg, fpos, acc, metric] = computeFilterAccuracy (originalfile, filter
 %   filteredimage is the filtered image (where edges are black and the
 % background is white) 
 % Outputs: 
-%  neg: false negatives
-%  pos: false positives
-%  zer: correctly detected edges
+%  fneg: false negatives (normalized rate)
+%  fpos: false positives (normalized rate)
+%  acc: correctly detected edges (normalized rate)
+%  metric: the quality metric score (fneg + fpos + 1e-6) / acc
 % Description: 
 % This function compares the accuracy of an edge filtered image vs the
 % matlab canny fiter implementation
