@@ -1,4 +1,4 @@
-function [fneg, fpos, acc, metric] = computeFilterAccuracy (originalfile, filteredimage)
+function [fneg, fpos, metric] = computeFilterAccuracy (originalfile, filteredimage)
 
 % Inputs:
 %   originalfile is the original file as 512 x 512 bmp
@@ -7,8 +7,7 @@ function [fneg, fpos, acc, metric] = computeFilterAccuracy (originalfile, filter
 % Outputs: 
 %  fneg: false negatives (normalized rate)
 %  fpos: false positives (normalized rate)
-%  acc: correctly detected edges (normalized rate)
-%  metric: the quality metric score (fneg + fpos + 1e-6) / acc
+%  metric: the quality metric score (fneg + fpos)
 % Description: 
 % This function compares the accuracy of an edge filtered image vs the
 % matlab canny fiter implementation
@@ -60,9 +59,9 @@ ind_zer = find(error == 0);
 
 fneg = length(ind_neg)/(512*512);
 fpos = length(ind_pos)/(512*512);
-acc = length(ind_zer)/(512*512);
+% acc = length(ind_zer)/(512*512);
 
-metric = (fneg + fpos + 1e-6) / acc;
+metric = fneg + fpos;
 
 
 
