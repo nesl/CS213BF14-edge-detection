@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include "vemu.h"
-#include "energy.h"
+
+vemu_regs start, end;
 
 /*-------STRUCTURES---------*/
 typedef struct {
@@ -17,6 +18,10 @@ void copyImageInfo(FILE* inputFile, FILE* outputFile);
 void copyColorTable(FILE* inputFile, FILE* outputFile, int nColors);
 
 int main(int argc, char* argv[]) {
+	/** Start profiling cycle & energy using VarEMU **/
+	vemu_read(READ_PROC, &start);
+	/*****************************************/
+
 	FILE	*bmpInput, *bmpOutput;
 	sImage originalImage;
 	sImage edgeImage;
@@ -100,11 +105,6 @@ int main(int argc, char* argv[]) {
 		}
 	}
 
-	/** Start profiling cycle & energy using VarEMU **/
-	statistics st;
-	start_cycle();
-	/*****************************************/
-
 	/*---------------------------------------------------
 	  YOUR EDGE DETECTION ALGORITHM STARTS HERE
 	---------------------------------------------------*/
@@ -116,10 +116,9 @@ int main(int argc, char* argv[]) {
 
 	/** Stop profiling cycle & energy using VarEMU,
 		and print out the results. **/
-    end_cycle();
+    vemu_read(READ_PROC, &end);
+    printf("\nvaremu cycles: %llu\tenergy: %llu nJ\n", end.total_cycles - start.total_cycles, end.total_act_energy - start.total_act_energy);
 
-    st = get_energy();
-    printf("%lld\t%lld\t%lld\n",st.delta_cycles, st.delta_dyn, st.delta_slp);
     /*****************************************/
 
 	printf("See output.bmp for results\n");
