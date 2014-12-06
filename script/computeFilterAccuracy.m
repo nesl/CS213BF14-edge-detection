@@ -1,4 +1,4 @@
-function [neg, pos, zer] = computeFilterAccuracy (originalfile, filteredimage)
+function [fneg, fpos, acc, metric] = computeFilterAccuracy (originalfile, filteredimage)
 
 % Inputs:
 %   originalfile is the original file as 512 x 512 bmp
@@ -57,9 +57,11 @@ ind_zer = find(error == 0);
 
 
 
-neg = length(ind_neg)/(512*512);
-pos = length(ind_pos)/(512*512);
-zer = length(ind_zer)/(512*512);
+fneg = length(ind_neg)/(512*512);
+fpos = length(ind_pos)/(512*512);
+acc = length(ind_zer)/(512*512);
+
+metric = fneg * fpos / acc;
 
 
 
